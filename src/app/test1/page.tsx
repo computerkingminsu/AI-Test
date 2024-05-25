@@ -15,6 +15,8 @@ export default function Test1() {
   const router = useRouter();
   const progressValue = ((currentQuestion + 1) / questions.length) * 100;
 
+  //사용자가 녹음을 차단시키면 바로 선택지 노출 시킬것
+
   //녹음 시작
   const startListening = () => {
     if (
@@ -32,7 +34,13 @@ export default function Test1() {
     recognition.interimResults = false;
     recognition.maxAlternatives = 1;
 
+    let permissionTimeout = setTimeout(() => {
+      console.error('수락 거부 두개 다 안누름');
+      setIsRecording(false);
+    }, 3000); //3초 후 권한이 거부된 것으로 간주
+
     recognition.onstart = () => {
+      clearTimeout(permissionTimeout);
       setIsRecording(true);
       console.log('Listening...');
     };
@@ -62,7 +70,7 @@ export default function Test1() {
     } else {
       setSelectedOption(null);
     }
-    // const newAudio = new Audio(`/audio/question-${currentQuestion}.mp3`);
+    // const newAudio = new Audio(`/audio/question-${currentQuestion}.mp3`);  //추후 질문마다 녹음파일 적용.
     const newAudio = new Audio(`/audio/question-0.mp3`);
     audioRef.current = newAudio;
 
