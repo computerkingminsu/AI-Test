@@ -124,22 +124,20 @@ export default function Test1() {
           <span>{questions[currentQuestion].question}</span>
         </div>
         <div className="mt-7 flex justify-center">
-          <div className="relative w-64 h-64">
-            <div
-              className={`relative w-64 h-64 ${
-                isPlaying || isRecording ? 'animate-scale' : ''
-              }`}
-            >
-              <Image
-                src="/test/talking.gif"
-                layout="fill"
-                objectFit="cover"
-                alt="Animated"
-              />
-            </div>
+          <div
+            className={`relative w-52  h-52 ${
+              isPlaying || isRecording ? 'animate-scale' : ''
+            }`}
+          >
+            <Image
+              src="/test/talking.gif"
+              layout="fill"
+              objectFit="cover"
+              alt="Animated"
+            />
           </div>
         </div>
-        <div className="mt-10 flex justify-between items-center font-semibold text-cyan-900">
+        <div className="mt-24 flex justify-between items-center font-semibold text-cyan-900">
           <span>전혀 아니다</span>
           <span>보통</span>
           <span>매우 그렇다</span>
